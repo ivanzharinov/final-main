@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN go mod tidy
+RUN go mod tidy \
+    && go build -o final-main .
 
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /main main.go
 
-CMD ["/main"]
+CMD ["/app/final-main"]
